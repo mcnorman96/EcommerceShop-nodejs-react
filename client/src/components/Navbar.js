@@ -1,5 +1,5 @@
 import { Badge } from '@material-ui/core';
-import { Search, ShoppingCartOutlined } from '@material-ui/icons';
+import { ShoppingCartOutlined } from '@material-ui/icons';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -39,21 +39,9 @@ const Left = styled.div`
   flex: 1;
   display: flex; 
   align-items: center;
-`
-const Language = styled.span`
-  font-size: 14px; 
-  cursor: pointer;
-`
-const SearchContainer = styled.div`
-  border: 0.5px solid lightgray;
-  display: flex; 
-  align-items: center;
-  margin-left: 25px;
-  padding: 5px;
-`;
-
-const Input = styled.input`
-  border: none;
+  a {
+    text-decoration: none;
+  }
 `
 
 const Center= styled.div`
@@ -68,6 +56,8 @@ const Center= styled.div`
 const Logo = styled.h1`
   font-weight: bold;
   text-align:center;
+  color: white; 
+  text-decoration: none;
 `
 
 const Right = styled.div`
@@ -100,7 +90,9 @@ const Navbar = ({page}) => {
     <Container props={page}>
       <Wrapper>
         <Left>
-         <Logo>Beats by Me</Logo>
+          <Link to="/">
+            <Logo>Beats by Me</Logo>
+          </Link>
         </Left>
         <Center>
           <Link to="/products">

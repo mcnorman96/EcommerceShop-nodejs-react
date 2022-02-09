@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Announcement from '../components/Announcement';
 import Navbar from '../components/Navbar';
 import Products from '../components/Products';
 import Footer from '../components/Footer';
@@ -67,20 +66,13 @@ const ProductList = () => {
             </Option>
             <Option>white</Option>
             <Option>black</Option>
-            <Option>red</Option>
-            <Option>blue</Option>
-            <Option>yellow</Option>
-            <Option>green</Option>
           </Select>
-          <Select name="size" onChange={handleFilters}>
+          <Select name="model" onChange={handleFilters}>
             <Option disabled>
-              Size
+              Model
             </Option>
-            <Option>XS</Option>
-            <Option>S</Option>
-            <Option>M</Option>
-            <Option>L</Option>
-            <Option>XL</Option>
+            <Option>Normal</Option>
+            <Option>Premium</Option>
           </Select>
         </Filter>
         <Filter>

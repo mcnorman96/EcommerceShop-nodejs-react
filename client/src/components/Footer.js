@@ -3,9 +3,7 @@ import {
   Instagram,
   MailOutline,
   Phone,
-  Pinterest,
-  Room,
-  Twitter,
+  Room
 } from "@material-ui/icons";
 import styled from "styled-components";
 

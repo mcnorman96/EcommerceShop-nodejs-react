@@ -1,4 +1,4 @@
-import { Add, Remove, StayPrimaryPortraitRounded } from "@material-ui/icons";
+import { Add, Remove } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
@@ -29,17 +29,10 @@ const Top = styled.div`
   padding: 20px;
 `;
 
-const TopButton = styled.button`
-  padding: 10px;
-  font-weight: 600;
-  cursor: pointer;
-  border: ${(props) => props.type === "filled" && "none"};
-  background-color: ${(props) =>
-    props.type === "filled" ? "black" : "transparent"};
-  color: ${(props) => props.type === "filled" && "white"};
-`;
-
 const TopTexts = styled.div`
+display: block;
+width: max-content; 
+margin: 0 auto;
 `;
 const TopText = styled.span`
   text-decoration: underline;
@@ -59,6 +52,7 @@ const Info = styled.div`
 const Product = styled.div`
   display: flex;
   justify-content: space-between;
+  margin: 5px 0;
 `;
 
 const ProductDetail = styled.div`
@@ -156,11 +150,14 @@ const Cart = () => {
 
   const cart = useSelector(state=>state.cart);
   const [stripeToken, setStripeToken] = useState(null);
+  const [bagCounter, setBagCounter] = useState(0);
   const history = useNavigate();
 
   const onToken = (token) => {
     setStripeToken(token);
   };
+
+  
   
   useEffect(() => {
 
@@ -181,6 +178,16 @@ const Cart = () => {
 
   }, [stripeToken, cart.total, history]);
 
+  useEffect(() => {
+
+    let bagcounter = 0;
+    
+    cart.products.map((product)=> (
+      setBagCounter( bagcounter += product.quantity)
+    ));
+
+  }, [cart]);
+
   return (
     <Container>
       <Navbar />
@@ -188,19 +195,19 @@ const Cart = () => {
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
-          <TopButton>CONTINUE SHOPPING</TopButton>
+          
           <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
+            <TopText>Shopping Bag({bagCounter})</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
+          
         </Top>
         <Bottom>
           <Info>
             {cart.products.map((product)=> (
               <Product key={product._id}>
                 <ProductDetail>
-                  <Image src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A" />
+                  <Image src={product.img} />
                   <Details>
                     <ProductName>
                       <b>Product:</b> {product.title}
@@ -210,7 +217,7 @@ const Cart = () => {
                     </ProductId>
                     <ProductColor color={product.color} />
                     <ProductSize>
-                      <b>Size:</b> {product.size}
+                      <b>Model:</b> {product.model}
                     </ProductSize>
                   </Details>
                 </ProductDetail>
@@ -225,29 +232,28 @@ const Cart = () => {
               </Product>
             ))};
             <Hr />
-           
           </Info>
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+              <SummaryItemPrice>{cart.total} DKK</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
+              <SummaryItemPrice>45 DKK</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
+              <SummaryItemPrice>-45 DKK</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+              <SummaryItemPrice>{cart.total} DKK</SummaryItemPrice>
             </SummaryItem>
             <StripeCheckout
-              name="Evena"
-              image="https://evena.dk/wp-content/uploads/2019/10/cropped-cropped-evena.png"
+              name="Beats by Me"
+              image="https://firebasestorage.googleapis.com/v0/b/normanisfire.appspot.com/o/headphones.jpg?alt=media&token=d11abed6-6b92-4286-8e96-285fde4673d6"
               billingAddress
               shippingAddress
               description={`Your total is $${cart.total}`}

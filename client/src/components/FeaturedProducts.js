@@ -54,7 +54,7 @@ const FeaturedProducts = ({cat}) => {
         <Headline>MOST SOLD PRODUCTS</Headline>
         <Wrapper>
           {products.slice(0, 6).map((item) =>(
-            <Product item={item} key={item._id} />
+            <Product color="white" item={item} key={item._id} />
           ))}
         </Wrapper>
       </Wrapping>

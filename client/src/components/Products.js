@@ -18,6 +18,8 @@ const Products = ({cat, filters, sort}) => {
   const [products, setProducts] = useState([]);
   const [filteredproducts, setFilteredproducts] = useState([]);
 
+  console.log(cat, filters, sort);
+
   useEffect(()=> {
     const getProducts = async () => {
       try{
@@ -42,7 +44,7 @@ const Products = ({cat, filters, sort}) => {
 
   */
   useEffect(()=> {
-    cat && setFilteredproducts(
+    setFilteredproducts(
       products.filter(item => 
         Object.entries(filters).every(([key, value])=> 
           item[key].includes(value)
@@ -69,13 +71,9 @@ const Products = ({cat, filters, sort}) => {
 
   return (
     <Container>
-      {cat 
-      ? filteredproducts.map((item) =>(
+      {filteredproducts.map((item) =>(
         <Product item={item} key={item._id} />
-      )) 
-      : products.slice(0, 8).map((item) =>(
-        <Product item={item} key={item._id} />
-      ))}
+      )) }
     </Container>
   );
 };

@@ -23,15 +23,44 @@ const Container = styled.div`
   width: calc(33% - 10px);
   margin: 5px;
   min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  & > a {
+    width: 100%; 
+    height: 100%; 
+    color: black;
+    text-align: center; 
+    text-decoration: none;
+  }
+  ${props => {
+        if (props.props?.color === 'white') return `
+          color: white;
+          a {
+            color: white;
+          }
+        `
+    }}
+
+  &:hover ${Info} {
+    opacity: 1;
+  }
+  
+`;
+
+const ImageContainer = styled.div`
+  margin: 5px 5px 10px;
+  width: 100%;
   height: 350px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #f5fbfd;
   position: relative;
-  &:hover ${Info} {
-    opacity: 1;
-  }
+
 `;
 
 const Image = styled.img`
@@ -59,23 +88,37 @@ const Icon = styled.div`
   }
 `;
 
-const Product = ({item}) => {
+const Title = styled.h3`
+  margin-bottom: 10px;
+`;
+
+const Price = styled.b`
+  font-weight: bold;
+`;
+
+const Product = ({item, color}) => {
   return (
-    <Container key={item._id}>
-      <Image src={item.imgs ? item.img : `https://firebasestorage.googleapis.com/v0/b/normanisfire.appspot.com/o/headphones2.jpg?alt=media&token=880bd832-61c6-420a-9ce2-e03e8e680887` } />
-      <Info>
-        <Icon>
-          <ShoppingCartOutlined/>
-        </Icon>
-        <Icon>
-          <Link to={`/product/${item._id}`}>
-            <SearchOutlined/>
-          </Link>
-        </Icon>
-        <Icon>
-          <FavoriteBorderOutlined/>
-        </Icon>
-      </Info>
+    <Container key={item._id} props={color}>
+      <Link to={`/product/${item._id}`}>
+        <ImageContainer>
+          <Image src={item.img ? item.img : `https://firebasestorage.googleapis.com/v0/b/normanisfire.appspot.com/o/headphones2.jpg?alt=media&token=880bd832-61c6-420a-9ce2-e03e8e680887` } />
+          <Info>
+          <Icon>
+            <ShoppingCartOutlined/>
+          </Icon>
+          <Icon>
+            <Link to={`/product/${item._id}`}>
+              <SearchOutlined/>
+            </Link>
+          </Icon>
+          <Icon>
+            <FavoriteBorderOutlined/>
+          </Icon>
+          </Info>
+        </ImageContainer>
+        <Title>{item.title}</Title>
+        <Price>{item.price} DKK</Price>
+      </Link>
     </Container>
   );
 };

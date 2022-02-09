@@ -2,7 +2,6 @@ import { Add, Remove } from "@material-ui/icons";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
-import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import { publicRequest } from "../requestMethods";
 import { useDispatch } from "react-redux";
@@ -71,12 +70,12 @@ const FilterColor = styled.div`
   cursor: pointer;
 `;
 
-const FilterSize = styled.select`
+const FilterModel = styled.select`
   margin-left: 10px;
   padding: 5px;
 `;
 
-const FilterSizeOption = styled.option``;
+const FilterModelOption = styled.option``;
 
 const AddContainer = styled.div`
   width: 50%;
@@ -89,6 +88,7 @@ const AmountContainer = styled.div`
   display: flex;
   align-items: center;
   font-weight: 700;
+  cursor: pointer;
 `;
 
 const Amount = styled.span`
@@ -120,7 +120,7 @@ const Product = () => {
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("");
-  const [size, setSize] = useState("");
+  const [model, setModel] = useState("");
 
   const dispatch = useDispatch();
 
@@ -148,7 +148,7 @@ const Product = () => {
   const handleClick = () => {
     // Update the cart
     dispatch(
-      addProduct({...product, quantity, color, size })
+      addProduct({...product, quantity, color, model })
     );
     
   };
@@ -165,21 +165,21 @@ const Product = () => {
           <Desc>
            {product.desc}
           </Desc>
-          <Price>$ {product.price}</Price>
+          <Price>{product.price} DKK</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>
-              {product.color ?.map((c) => (
+              {product.color?.map((c) => (
                 <FilterColor color={c} key={c} onClick={()=>setColor(c)}/>
               ))}
             </Filter>
             <Filter>
-              <FilterTitle>Size</FilterTitle>
-              <FilterSize onChange={(e)=>setSize(e.target.value)}>
-                {product.size ?.map((s) => (
-                   <FilterSizeOption key={s}>{s}</FilterSizeOption>
+              <FilterTitle>Model</FilterTitle>
+              <FilterModel onChange={(e)=>setModel(e.target.value)}>
+                {product.model?.map((s) => (
+                   <FilterModelOption key={s}>{s}</FilterModelOption>
                 ))}
-              </FilterSize>
+              </FilterModel>
             </Filter>
           </FilterContainer>
           <AddContainer>
