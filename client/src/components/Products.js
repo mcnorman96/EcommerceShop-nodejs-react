@@ -18,8 +18,6 @@ const Products = ({cat, filters, sort}) => {
   const [products, setProducts] = useState([]);
   const [filteredproducts, setFilteredproducts] = useState([]);
 
-  console.log(cat, filters, sort);
-
   useEffect(()=> {
     const getProducts = async () => {
       try{
@@ -37,16 +35,14 @@ const Products = ({cat, filters, sort}) => {
   }, [cat]);
 
 
-
   /* Checking if cat and filteredproducts
-  
-  checking for values in productlist to match our filters.
-
+    checking for values in productlist to match our filters.
   */
   useEffect(()=> {
     setFilteredproducts(
       products.filter(item => 
         Object.entries(filters).every(([key, value])=> 
+        
           item[key].includes(value)
         )
       )
@@ -54,18 +50,18 @@ const Products = ({cat, filters, sort}) => {
   }, [products, cat, filters]);
 
   useEffect(()=> {
-    if((sort="newest")) {
-      setFilteredproducts(prev => 
-        [...prev].sort((a,b) => a.createdAt - b.createdAt)
-        );
-    } else if((sort === "asc")){
-      setFilteredproducts(prev => 
-        [...prev].sort((a,b) => a.price - b.price)
-        );
+    if (sort === "newest") {
+      setFilteredproducts((prev) =>
+        [...prev].sort((a, b) => a.createdAt - b.createdAt)
+      );
+    } else if (sort === "asc") {
+      setFilteredproducts((prev) =>
+        [...prev].sort((a, b) => a.price - b.price)
+      );
     } else {
-      setFilteredproducts(prev => 
-        [...prev].sort((a,b) => b.price - a.price)
-        );
+      setFilteredproducts((prev) =>
+        [...prev].sort((a, b) => b.price - a.price)
+      );
     }
   }, [sort]);
 

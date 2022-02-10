@@ -98,14 +98,14 @@ const Navbar = ({page}) => {
           <Link to="/products">
             <MenuItem>All Products</MenuItem>
           </Link>
-          <Link to="/category">
+          <Link to="/products/headphones">
             <MenuItem>Headphones</MenuItem>
           </Link>
-          <Link to="/category">
+          <Link to="/products/earphones">
             <MenuItem>Earphones</MenuItem>
           </Link>
-          <Link to="/category">
-            <MenuItem>Cameras</MenuItem>
+          <Link to="/products/speakers">
+            <MenuItem>Speakers</MenuItem>
           </Link>
         </Center>
         <Right>

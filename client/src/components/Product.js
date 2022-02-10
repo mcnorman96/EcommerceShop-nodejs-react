@@ -90,16 +90,25 @@ const Icon = styled.div`
 
 const Title = styled.h3`
   margin-bottom: 10px;
+  ${props => {
+        if (props.props === 'white') return `
+        color: white;
+        `
+    }}
 `;
 
 const Price = styled.b`
   font-weight: bold;
+  ${props => {
+        if (props.props === 'white') return `
+        color: white;
+        `
+    }}
 `;
 
 const Product = ({item, color}) => {
   return (
-    <Container key={item._id} props={color}>
-      <Link to={`/product/${item._id}`}>
+    <Container key={item._id}>
         <ImageContainer>
           <Image src={item.img ? item.img : `https://firebasestorage.googleapis.com/v0/b/normanisfire.appspot.com/o/headphones2.jpg?alt=media&token=880bd832-61c6-420a-9ce2-e03e8e680887` } />
           <Info>
@@ -116,9 +125,8 @@ const Product = ({item, color}) => {
           </Icon>
           </Info>
         </ImageContainer>
-        <Title>{item.title}</Title>
-        <Price>{item.price} DKK</Price>
-      </Link>
+        <Title props={color}>{item.title}</Title>
+        <Price props={color}>{item.price} DKK</Price>
     </Container>
   );
 };

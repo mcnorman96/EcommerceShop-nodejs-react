@@ -188,6 +188,7 @@ const Cart = () => {
 
   }, [cart]);
 
+
   return (
     <Container>
       <Navbar />
@@ -227,7 +228,7 @@ const Cart = () => {
                     <ProductAmount>{product.quantity}</ProductAmount>
                     <Remove />
                   </ProductAmountContainer>
-                  <ProductPrice>$ {product.price * product.quantity}</ProductPrice>
+                  <ProductPrice>{product.price * product.quantity} DKK</ProductPrice>
                 </PriceDetail>
               </Product>
             ))};
@@ -256,7 +257,7 @@ const Cart = () => {
               image="https://firebasestorage.googleapis.com/v0/b/normanisfire.appspot.com/o/headphones.jpg?alt=media&token=d11abed6-6b92-4286-8e96-285fde4673d6"
               billingAddress
               shippingAddress
-              description={`Your total is $${cart.total}`}
+              description={`Your total is ${cart.total} DKK`}
               amount={cart.total*100}
               token={onToken}
               stripeKey={KEY}

@@ -1,7 +1,7 @@
 export const sliderItems = [
     {
       id: 1,
-      img: "https://firebasestorage.googleapis.com/v0/b/normanisfire.appspot.com/o/headphones.jpg?alt=media&token=d11abed6-6b92-4286-8e96-285fde4673d6",
+      img: "https://firebasestorage.googleapis.com/v0/b/normanisfire.appspot.com/o/headphones1221.jpg?alt=media&token=e6e3eb9b-850f-4455-ae6d-60a5a566a2e5",
       title: "HEADSET LIKE YOU HAVE NEVER SEEN BEFORE",
       desc: "DON'T COMPROMISE ON SOUND! GET FLAT 30% OFF FOR NEW ARRIVALS.",
       bg: "f5fafd",
@@ -19,21 +19,21 @@ export const sliderItems = [
   export const categories = [
     {
       id: 1,
-      img: "https://firebasestorage.googleapis.com/v0/b/normanisfire.appspot.com/o/headphones.jpg?alt=media&token=d11abed6-6b92-4286-8e96-285fde4673d6",
+      img: "https://firebasestorage.googleapis.com/v0/b/normanisfire.appspot.com/o/head-resized.jpg?alt=media&token=c4ec39fc-79fb-4705-9d88-4044114b4568",
       title: "Headphones!",
       cat: "headphones",
     },
     {
       id: 2,
-      img: "https://firebasestorage.googleapis.com/v0/b/normanisfire.appspot.com/o/headphones2.jpg?alt=media&token=880bd832-61c6-420a-9ce2-e03e8e680887",
+      img: "https://firebasestorage.googleapis.com/v0/b/normanisfire.appspot.com/o/earphone3-resized.jpg?alt=media&token=55bb2a91-30ab-441e-85a5-852b41be353b",
       title: "Earphones",
       cat: "earphones",
     },
     {
       id: 3,
-      img: "https://firebasestorage.googleapis.com/v0/b/normanisfire.appspot.com/o/headphones2.jpg?alt=media&token=880bd832-61c6-420a-9ce2-e03e8e680887",
-      title: "Cameras",
-      cat: "cameras",
+      img: "https://firebasestorage.googleapis.com/v0/b/normanisfire.appspot.com/o/speaker2resized.jpg?alt=media&token=8bb9ea0a-ddcd-4d45-bd85-e86dd0dc0f20",
+      title: "Speakers",
+      cat: "speakers",
     },
   ];
 
