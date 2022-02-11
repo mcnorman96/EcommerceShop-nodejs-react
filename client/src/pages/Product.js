@@ -114,16 +114,24 @@ const Button = styled.button`
 `;
 
 const Product = () => {
+  // Getting the id of the product from the url
   const location = useLocation();
   const id = location.pathname.split("/")[2];
 
+  // Setting up our product as an object
   const [product, setProduct] = useState({});
+
+  // Quanitity always default to 1 when loading the page
   const [quantity, setQuantity] = useState(1);
+
+  // Product color and model
   const [color, setColor] = useState("");
   const [model, setModel] = useState("");
 
+  // with useDispatch we are able to dispatch any action to the store by simply adding an action as an argument to the new variable
   const dispatch = useDispatch();
 
+  // Using the id to retrieve the product data from the api.
   useEffect(() => {
     const getProduct = async () => {
       try {
@@ -137,6 +145,7 @@ const Product = () => {
 
   }, [id]);
 
+  // Updating the quantity of the product. 
   const handleQuantity = (type) => {
     if((type === "dec")) {
       quantity > 1 && setQuantity(quantity - 1)
@@ -145,8 +154,9 @@ const Product = () => {
     }
   }
 
+  // Adding the product to cart.
   const handleClick = () => {
-    // Update the cart
+    // Using the Dispacth function from redux to use our action addProduct from cartRedux.js
     dispatch(
       addProduct({...product, quantity, color, model })
     );

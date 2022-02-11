@@ -147,12 +147,16 @@ const Button = styled.button`
 `;
 
 const Cart = () => {
-
+  // Getting cart item by using the function useSelctor
   const cart = useSelector(state=>state.cart);
+  //Stripetoken to enable payment method. 
   const [stripeToken, setStripeToken] = useState(null);
   const [bagCounter, setBagCounter] = useState(0);
+
+  //useNavigate hook to redirect to page after submitting order. 
   const history = useNavigate();
 
+  //Setting the stripe token
   const onToken = (token) => {
     setStripeToken(token);
   };
@@ -160,7 +164,7 @@ const Cart = () => {
   
   
   useEffect(() => {
-
+    // Get the token id and amount when needing to pay.
     const makeRequest = async () => {
       try {
         const res = await userRequest.post("/checkout/payment", {
@@ -173,15 +177,13 @@ const Cart = () => {
 
       }
     }
-    
+    // Only getting the makeRequest function if stripetoke and cart.total is over 1.
     stripeToken && cart.total >= 1 && makeRequest();
 
   }, [stripeToken, cart.total, history]);
 
   useEffect(() => {
-
     let bagcounter = 0;
-    
     cart.products.map((product)=> (
       setBagCounter( bagcounter += product.quantity)
     ));
@@ -196,12 +198,10 @@ const Cart = () => {
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
-          
           <TopTexts>
             <TopText>Shopping Bag({bagCounter})</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
-          
         </Top>
         <Bottom>
           <Info>

@@ -40,11 +40,18 @@ const Option = styled.option`
 `;
 
 const ProductList = () => {
+  // Using the useLocation hook to find out which page we are on
   const location = useLocation();
+  // Retrieving the category name
   const cat = location.pathname.split("/")[2];
+  // Setting the filter state as an object.
   const [filters, setFilters] = useState({});
+  // Setting the sort filter as Newest
   const [sort, setSort] = useState("Newest");
 
+
+  // Handle filter function for setting the value of our sort
+  // Then we pass it to our products components
   const handleFilters = (e) => {
     const value = e.target.value;
     setFilters({

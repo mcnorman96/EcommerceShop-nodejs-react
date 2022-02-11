@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-//import { popularProducts } from '../data';
 import Product from './Product';
 import axios from "axios";
 
@@ -8,13 +7,14 @@ const Container = styled.div`
   padding: 20px;
   display: flex;
   flex-wrap: wrap;
-  //justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
 `;
 
+//Taking parameters from productlist as CAT, SORT, Filters
 const Products = ({cat, filters, sort}) => {
 
+  // 2 Product state. One for normal and one for the filtered products. 
   const [products, setProducts] = useState([]);
   const [filteredproducts, setFilteredproducts] = useState([]);
 
@@ -37,6 +37,7 @@ const Products = ({cat, filters, sort}) => {
 
   /* Checking if cat and filteredproducts
     checking for values in productlist to match our filters.
+    Our filter here is Color and Model. 
   */
   useEffect(()=> {
     setFilteredproducts(
@@ -49,6 +50,11 @@ const Products = ({cat, filters, sort}) => {
     )
   }, [products, cat, filters]);
 
+
+  /*
+  This is for sorting by Newest, Price(ASC) and Price(DESC)
+  Using the sort function to compare items in array
+  */
   useEffect(()=> {
     if (sort === "newest") {
       setFilteredproducts((prev) =>

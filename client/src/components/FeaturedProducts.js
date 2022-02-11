@@ -28,16 +28,15 @@ const Wrapper = styled.div`
     flex-wrap: wrap;
 `;
 
-const FeaturedProducts = ({cat}) => {
+const FeaturedProducts = () => {
 
+  // Defining product state as an array to populate with api items
   const [products, setProducts] = useState([]);
 
   useEffect(()=> {
     const getProducts = async () => {
       try{
-        const res = await axios.get( cat 
-          ? `http://localhost:5000/api/products?category=${cat}` 
-          : "http://localhost:5000/api/products");
+        const res = await axios.get("http://localhost:5000/api/products");
        
         setProducts(res.data);
 
@@ -46,7 +45,7 @@ const FeaturedProducts = ({cat}) => {
       }
     } 
     getProducts();
-  }, [cat]);
+  });
 
   return (
     <Container>

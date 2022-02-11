@@ -10,7 +10,7 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+    url("https://firebasestorage.googleapis.com/v0/b/normanisfire.appspot.com/o/headphones1221.jpg?alt=media&token=e6e3eb9b-850f-4455-ae6d-60a5a566a2e5")
       center;
   background-size: cover;
   display: flex;
@@ -72,10 +72,15 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
+
+  /*
+    the useSelector hook is used to extract “value” from the global state. We can take out any state we want to use in the component using the same way. 
+  */
   const {isFetching, error} = useSelector((state) => state.user);
 
   const handleLogin = (e) => {
     e.preventDefault();
+    //login function from apiCalls that checks if our credentials match our user in database. 
     login(dispatch, { username, password });
   }
 
