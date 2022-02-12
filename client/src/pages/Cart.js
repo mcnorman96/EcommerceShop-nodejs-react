@@ -1,5 +1,5 @@
 import { Add, Remove } from "@material-ui/icons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
@@ -8,6 +8,7 @@ import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
 import { useNavigate } from "react-router-dom";
+import { decreaseQuantity, incrementQuantity } from "../redux/cartRedux";
 
 const KEY = process.env.REACT_APP_STRIPE;
 
@@ -96,6 +97,7 @@ const ProductAmountContainer = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  cursor: pointer;
 `;
 
 const ProductAmount = styled.div`
@@ -152,6 +154,9 @@ const Cart = () => {
   //Stripetoken to enable payment method. 
   const [stripeToken, setStripeToken] = useState(null);
   const [bagCounter, setBagCounter] = useState(0);
+  const quantity = 1;
+  const dispatch = useDispatch();
+
 
   //useNavigate hook to redirect to page after submitting order. 
   const history = useNavigate();
@@ -160,8 +165,6 @@ const Cart = () => {
   const onToken = (token) => {
     setStripeToken(token);
   };
-
-  
   
   useEffect(() => {
     // Get the token id and amount when needing to pay.
@@ -189,6 +192,7 @@ const Cart = () => {
     ));
 
   }, [cart]);
+
 
 
   return (
@@ -224,9 +228,19 @@ const Cart = () => {
                 </ProductDetail>
                 <PriceDetail>
                   <ProductAmountContainer>
-                    <Add />
+                    <Add onClick={ 
+                      () => {
+                        dispatch(
+                          incrementQuantity({...product, quantity })
+                        );
+                      } }/>
                     <ProductAmount>{product.quantity}</ProductAmount>
-                    <Remove />
+                    <Remove onClick={ 
+                      () => {
+                        dispatch(
+                          decreaseQuantity({...product, quantity })
+                        );
+                      } }/>
                   </ProductAmountContainer>
                   <ProductPrice>{product.price * product.quantity} DKK</ProductPrice>
                 </PriceDetail>

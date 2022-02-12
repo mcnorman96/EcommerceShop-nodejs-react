@@ -5,8 +5,6 @@ const jwt = require('jsonwebtoken');
 
 //REGISTER 
 router.post("/register", async (req, res) => {
-
-
   /* 
     Using cryptojs to encrypt password to not see it if db is getting hacked. 
   */

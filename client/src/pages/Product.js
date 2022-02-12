@@ -186,7 +186,7 @@ const Product = () => {
             <Filter>
               <FilterTitle>Model</FilterTitle>
               <FilterModel onChange={(e)=>setModel(e.target.value)}>
-                {product.model?.map((s) => (
+                {product.model?.map((s, i) => (
                    <FilterModelOption key={s}>{s}</FilterModelOption>
                 ))}
               </FilterModel>
