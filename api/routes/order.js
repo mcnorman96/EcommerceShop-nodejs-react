@@ -1,23 +1,22 @@
 const Order = require("../models/Order");
-const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin } = require("./verifyToken");
+const {
+  verifyToken,
+  verifyTokenAndAuthorization,
+  verifyTokenAndAdmin,
+} = require("./verifyToken");
 
 const router = require("express").Router();
 
-
-// CREATE  Order
-router.post("/", verifyToken,  async(req, res)=> {
-
-  const newOrder = new Order(req.body)
-
+//CREATE
+//router.post("/", verifyToken, async (req, res) => {
+router.post("/", async (req, res) => {
+  const newOrder = new Order(req.body);
   try {
-
     const savedOrder = await newOrder.save();
     res.status(200).json(savedOrder);
-
-  }catch(err) {
+  } catch (err) {
     res.status(500).json(err);
   }
-
 });
 
 

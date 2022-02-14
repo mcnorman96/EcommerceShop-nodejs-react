@@ -190,9 +190,11 @@ const Cart = () => {
           tokenId: stripeToken.id,
           amount: cart.total,
         });
-        history("/success", {
+        history('/success', { state: {
           stripeData: res.data,
-          products: cart, });
+          products: cart, 
+        } 
+          });
       } catch {}
     };
     stripeToken && makeRequest();
@@ -215,6 +217,7 @@ const Cart = () => {
         <Top>
           <TopTexts>
             <TopText>Shopping Bag({bagCounter})</TopText>
+            
           </TopTexts>
         </Top>
         <Bottom>
