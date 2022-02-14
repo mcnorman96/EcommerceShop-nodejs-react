@@ -6,6 +6,7 @@ import {
   Room
 } from "@material-ui/icons";
 import styled from "styled-components";
+import { tablet } from "../Responsive";
 
 const Container = styled.div`
   
@@ -21,6 +22,7 @@ const Wrapper = styled.div`
   max-width: 1500px; 
   margin: 0 auto;
   display: flex;
+  ${tablet({ flexDirection: "column",  })}
 `;
 
 const Left = styled.div`

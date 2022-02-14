@@ -3,14 +3,14 @@ export const sliderItems = [
       id: 1,
       img: "https://firebasestorage.googleapis.com/v0/b/normanisfire.appspot.com/o/headphones1221.jpg?alt=media&token=e6e3eb9b-850f-4455-ae6d-60a5a566a2e5",
       title: "HEADSET LIKE YOU HAVE NEVER SEEN BEFORE",
-      desc: "DON'T COMPROMISE ON SOUND! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+      desc: "DON'T COMPROMISE ON SOUND!",
       bg: "f5fafd",
     },
     {
       id: 2,
       img: "https://firebasestorage.googleapis.com/v0/b/normanisfire.appspot.com/o/headphones2.jpg?alt=media&token=880bd832-61c6-420a-9ce2-e03e8e680887",
       title: "AUTUMN COLLECTION",
-      desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+      desc: "DON'T COMPROMISE ON STYLE!",
       bg: "fcf1ed",
     },
    

@@ -7,6 +7,7 @@ import { publicRequest } from "../requestMethods";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../redux/cartRedux";
 import Footer from '../components/Footer';
+import { tablet } from "../Responsive";
 
 
 const Container = styled.div``;
@@ -14,6 +15,10 @@ const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
+  ${tablet({
+    flexDirection: "column",
+    padding: "50px 20px"
+  })}
 `;
 
 const ImgContainer = styled.div`
@@ -22,13 +27,20 @@ const ImgContainer = styled.div`
 
 const Image = styled.img`
   width: 100%;
-  height: 90vh;
+  height: 60vh;
   object-fit: cover;
+  ${tablet({
+     height: "400px",
+  })}
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
   padding: 0px 50px;
+  ${tablet({
+     height: "400px",
+     padding: "10px 0px"
+  })}
 `;
 
 const Title = styled.h1`
@@ -49,6 +61,9 @@ const FilterContainer = styled.div`
   margin: 30px 0px;
   display: flex;
   justify-content: space-between;
+  ${tablet({
+     width: "auto"
+  })}
 `;
 
 const Filter = styled.div`
@@ -82,6 +97,9 @@ const AddContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  ${tablet({
+     width: "auto"
+  })}
 `;
 
 const AmountContainer = styled.div`

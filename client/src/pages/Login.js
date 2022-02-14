@@ -45,7 +45,7 @@ const Button = styled.button`
   width: 40%;
   border: none;
   padding: 15px 20px;
-  background-color: teal;
+  background-color: black;
   color: white;
   cursor: pointer;
   margin-bottom: 10px;
@@ -77,7 +77,7 @@ const Login = () => {
     the useSelector hook is used to extract “value” from the global state. We can take out any state we want to use in the component using the same way. 
   */
   const {isFetching, error} = useSelector((state) => state.user);
-
+  console.log(error);
   const handleLogin = (e) => {
     e.preventDefault();
     //login function from apiCalls that checks if our credentials match our user in database. 
@@ -90,11 +90,9 @@ const Login = () => {
         <Title>SIGN IN</Title>
         <Form>
           <Input placeholder="username" onChange={(e) => setUsername(e.target.value)}/>
-          <Input placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
+          <Input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
           <Button onClick={handleLogin} disabled={isFetching}>LOGIN</Button>
          {error && <Error>Something went wrong..</Error>}
-          <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-          <Link>CREATE A NEW ACCOUNT</Link>
         </Form>
       </Wrapper>
     </Container>

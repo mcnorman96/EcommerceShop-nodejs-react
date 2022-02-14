@@ -1,10 +1,11 @@
-import { Badge } from '@material-ui/core';
+import { Badge, Menu } from '@material-ui/core';
+import MenuIcon from '@mui/icons-material/Menu';
 import { ShoppingCartOutlined } from '@material-ui/icons';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import {mobile} from "../Responsive";
+import {mobile, tablet} from "../Responsive";
 
 const Container = styled.div`
   height: 60px; 
@@ -49,15 +50,39 @@ const Center= styled.div`
   flex-wrap: wrap;
   justify-center: center;
   text-align: center;
+  position: relative;
   a {
     text-decoration: none;
   }
+  ${tablet({ order: "2", marginLeft: "10px" })}
 `
+const Nav = styled.nav`
+  display: flex; 
+  flex-wrap: wrap;
+  justify-center: center;
+  text-align: center;
+  font-size: 25px;
+  a {
+    text-decoration: none;
+  }
+  ${tablet({
+    position: "absolute",
+    flexDirection: "column",
+    right: "0",
+    top: "50px",
+    background: "#161616",
+    padding: "20px"
+  })}
+`
+
 const Logo = styled.h1`
   font-weight: bold;
   text-align:center;
   color: white; 
   text-decoration: none;
+  ${tablet({
+    fontSize: "25px",
+  })}
 `
 
 const Right = styled.div`
@@ -79,12 +104,46 @@ const MenuItem = styled.div`
     background-color:red;
     color: white;
   }
+  ${tablet({
+    marginLeft: "10px", 
+    marginRight: "10px", 
+    marginBottom: "10px"
+  })}
+  
 `
+
+const NavbarButton = styled.div`
+  cursor: pointer; 
+  display: none;
+  ${tablet({ display: "block" })}
+`;
+
+
+
 
 
 const Navbar = ({page}) => {
 
   const quantity = useSelector(state => state.cart.quantity )
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+  const [toggleMenu, setToggleMenu] = useState(false)
+
+  const toggleNav = () => {
+    setToggleMenu(!toggleMenu)
+  }
+
+  useEffect(() => {
+
+    const changeWidth = () => {
+      setScreenWidth(window.innerWidth);
+    }
+
+    window.addEventListener('resize', changeWidth)
+
+    return () => {
+            window.removeEventListener('resize', changeWidth)
+        }
+  }, [])
 
   return (
     <Container props={page}>
@@ -95,23 +154,27 @@ const Navbar = ({page}) => {
           </Link>
         </Left>
         <Center>
-          <Link to="/products">
-            <MenuItem>All Products</MenuItem>
-          </Link>
-          <Link to="/products/headphones">
-            <MenuItem>Headphones</MenuItem>
-          </Link>
-          <Link to="/products/earphones">
-            <MenuItem>Earphones</MenuItem>
-          </Link>
-          <Link to="/products/speakers">
-            <MenuItem>Speakers</MenuItem>
-          </Link>
+          {(toggleMenu || screenWidth > 992) && (
+            <Nav>
+              <Link to="/products">
+                <MenuItem>All Products</MenuItem>
+              </Link>
+              <Link to="/products/headphones">
+                <MenuItem>Headphones</MenuItem>
+              </Link>
+              <Link to="/products/earphones">
+                <MenuItem>Earphones</MenuItem>
+              </Link>
+              <Link to="/products/speakers">
+                <MenuItem>Speakers</MenuItem>
+              </Link>
+            </Nav>
+          )}
+          <NavbarButton>
+            <MenuIcon onClick={toggleNav} />
+          </NavbarButton>
         </Center>
         <Right>
-        <Link to="/register">
-          <MenuItem>Register</MenuItem>
-        </Link>
         <Link to="/login">
           <MenuItem>Sign IN</MenuItem>
         </Link>

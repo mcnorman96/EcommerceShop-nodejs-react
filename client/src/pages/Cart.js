@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
 import { useNavigate } from "react-router-dom";
 import { decreaseQuantity, incrementQuantity } from "../redux/cartRedux";
+import { tablet } from "../Responsive";
 
 const KEY = process.env.REACT_APP_STRIPE;
 
@@ -35,6 +36,7 @@ display: block;
 width: max-content; 
 margin: 0 auto;
 `;
+
 const TopText = styled.span`
   text-decoration: underline;
   cursor: pointer;
@@ -44,6 +46,9 @@ const TopText = styled.span`
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
+  ${tablet({
+    flexDirection: "column"
+  })}
 `;
 
 const Info = styled.div`
@@ -54,15 +59,28 @@ const Product = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 5px 0;
+  ${tablet({
+    flexDirection: "column",
+    alignItems: "center", 
+    marginBottom: "40px"
+  })}
 `;
 
 const ProductDetail = styled.div`
   flex: 2;
   display: flex;
+  ${tablet({
+    flexDirection: "column",
+    justifyContent: "center", 
+    alignCenter: "center"
+  })}
 `;
 
 const Image = styled.img`
   width: 200px;
+  ${tablet({
+   width: "100%"
+  })}
 `;
 
 const Details = styled.div`
@@ -157,7 +175,6 @@ const Cart = () => {
   const quantity = 1;
   const dispatch = useDispatch();
 
-
   //useNavigate hook to redirect to page after submitting order. 
   const history = useNavigate();
 
@@ -165,24 +182,20 @@ const Cart = () => {
   const onToken = (token) => {
     setStripeToken(token);
   };
-  
+
   useEffect(() => {
-    // Get the token id and amount when needing to pay.
     const makeRequest = async () => {
       try {
         const res = await userRequest.post("/checkout/payment", {
-          tokenId: stripeToken.id, 
-          amount: cart.total * 100, 
-          
+          tokenId: stripeToken.id,
+          amount: cart.total,
         });
-        history.push("/success", {data:res.data});
-      } catch {
-
-      }
-    }
-    // Only getting the makeRequest function if stripetoke and cart.total is over 1.
-    stripeToken && cart.total >= 1 && makeRequest();
-
+        history("/success", {
+          stripeData: res.data,
+          products: cart, });
+      } catch {}
+    };
+    stripeToken && makeRequest();
   }, [stripeToken, cart.total, history]);
 
   useEffect(() => {
@@ -193,8 +206,6 @@ const Cart = () => {
 
   }, [cart]);
 
-
-
   return (
     <Container>
       <Navbar />
@@ -204,7 +215,6 @@ const Cart = () => {
         <Top>
           <TopTexts>
             <TopText>Shopping Bag({bagCounter})</TopText>
-            <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
         </Top>
         <Bottom>
@@ -245,7 +255,7 @@ const Cart = () => {
                   <ProductPrice>{product.price * product.quantity} DKK</ProductPrice>
                 </PriceDetail>
               </Product>
-            ))};
+            ))}
             <Hr />
           </Info>
           <Summary>
@@ -268,7 +278,7 @@ const Cart = () => {
             </SummaryItem>
             <StripeCheckout
               name="Beats by Me"
-              image="https://firebasestorage.googleapis.com/v0/b/normanisfire.appspot.com/o/headphones.jpg?alt=media&token=d11abed6-6b92-4286-8e96-285fde4673d6"
+              image="https://firebasestorage.googleapis.com/v0/b/normanisfire.appspot.com/o/headphones1221.jpg?alt=media&token=e6e3eb9b-850f-4455-ae6d-60a5a566a2e5"
               billingAddress
               shippingAddress
               description={`Your total is ${cart.total} DKK`}

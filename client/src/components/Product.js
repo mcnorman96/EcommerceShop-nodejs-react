@@ -2,6 +2,7 @@ import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined } from '@m
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { tablet } from '../Responsive';
 
 const Info = styled.div`
   opacity: 0;
@@ -47,7 +48,7 @@ const Container = styled.div`
   &:hover ${Info} {
     opacity: 1;
   }
-  
+  ${tablet({ width: "calc(50% - 10px)"  })}
 `;
 
 const ImageContainer = styled.div`

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Product from './Product';
 import axios from "axios";
+import { tablet } from '../Responsive';
 
 const Container = styled.div`
   padding: 20px;
@@ -9,6 +10,10 @@ const Container = styled.div`
   flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
+ ${tablet({
+    justifyContent: "center",
+    alignItems: "center",
+ })}
 `;
 
 //Taking parameters from productlist as CAT, SORT, Filters

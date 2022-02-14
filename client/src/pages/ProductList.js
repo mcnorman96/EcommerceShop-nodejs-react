@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import {
   useLocation, 
 } from "react-router-dom";
+import { tablet } from '../Responsive';
 
 const Container = styled.div`
   
@@ -32,7 +33,9 @@ const FilterText = styled.span`
 
 const Select = styled.select`
    padding: 10px;
-  margin-right: 20px;
+  margin-right: 20px; 
+  ${tablet({ marginTop: "10px"  })}
+  
 `;
 
 const Option = styled.option`

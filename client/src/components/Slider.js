@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { sliderItems } from '../data';
+import { mobile, tablet } from '../Responsive';
 
 const Container = styled.div `
   width: 100%; 
@@ -32,6 +33,7 @@ const Arrow = styled.div `
   cursor: pointer;
   opacity: 1;
   z-index: 2;
+  ${tablet({ width: "30px", height: "30px" })}
 `
 
 const Wrapper = styled.div`
@@ -60,17 +62,19 @@ const Image = styled.img`
   object-fit:cover;
 `
 const InfoContainer = styled.div`
-  padding: 50px; 
+    margin: 0 70px;
   position: absolute;
   max-width: 700px;
   left: 30%; 
   top: 50%; 
   transform: translate(-50%, -50% );
   color: white;
+  ${tablet({ left: "40%", margin: "0",  })}
 `
 const Title = styled.h1`
   font-size: 70px;
-`;
+  ${tablet({ fontSize: "40px;" })}
+`
 const Description = styled.p`
   margin: 50px 0;
   font-size: 20px;
