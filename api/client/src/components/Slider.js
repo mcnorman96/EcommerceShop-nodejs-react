@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { sliderItems } from '../data';
-import { mobile, tablet } from '../Responsive';
+import { tablet } from '../Responsive';
 
 const Container = styled.div `
   width: 100%; 

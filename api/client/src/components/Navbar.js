@@ -1,4 +1,4 @@
-import { Badge, Menu } from '@material-ui/core';
+import { Badge } from '@material-ui/core';
 import MenuIcon from '@mui/icons-material/Menu';
 import { ShoppingCartOutlined } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react';
@@ -48,7 +48,7 @@ const Left = styled.div`
 const Center= styled.div`
   display: flex; 
   flex-wrap: wrap;
-  justify-center: center;
+  justify-content: center;
   text-align: center;
   position: relative;
   a {
@@ -59,7 +59,7 @@ const Center= styled.div`
 const Nav = styled.nav`
   display: flex; 
   flex-wrap: wrap;
-  justify-center: center;
+  justify-content: center;
   text-align: center;
   font-size: 25px;
   a {

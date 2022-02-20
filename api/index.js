@@ -6,9 +6,10 @@ const cors = require('cors');
 const userRoute = require("./routes/user");
 const authRoute = require("./routes/auth");
 const productRoute = require("./routes/product");
-const orderRoute = require("./routes/Order");
-const cartRoute = require("./routes/Cart");
-const stripeRoute = require("./routes/Stripe");
+const orderRoute = require("./routes/order");
+const cartRoute = require("./routes/cart");
+const stripeRoute = require("./routes/stripe");
+const path = require('path');
 
 
 dotenv.config();
@@ -32,6 +33,14 @@ mongoose
   app.use("/api/orders", orderRoute);
   app.use("/api/cart", cartRoute);
   app.use("/api/checkout", stripeRoute);
+
+
+  app.use(express.static(path.join(__dirname, "/client/build")));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
+  });
+
   
 app.listen(process.env.PORT || 5000, () => {
   console.log("backend running");

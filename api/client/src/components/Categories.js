@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { categories } from "../data";
-import { tablet, mobile } from '../Responsive';
+import { tablet } from '../Responsive';
 import CategoryItem from './CategoryItem';
 
 const Container = styled.div`

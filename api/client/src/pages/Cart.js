@@ -78,6 +78,9 @@ const ProductDetail = styled.div`
 
 const Image = styled.img`
   width: 200px;
+  height: 150px;
+ 
+  object-fit: cover;
   ${tablet({
    width: "100%"
   })}
