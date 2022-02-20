@@ -8,8 +8,7 @@ import styled from 'styled-components';
 import {mobile, tablet} from "../Responsive";
 
 const Container = styled.div`
-  height: 60px; 
-  ${mobile({ height: "50px" })}
+  ${mobile({ height: "60px" })}
   z-index: 99;
   background-color: #161616;
   color: white;
@@ -33,8 +32,6 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-
-
 `
 const Left = styled.div`
   flex: 1;
@@ -64,14 +61,18 @@ const Nav = styled.nav`
   font-size: 25px;
   a {
     text-decoration: none;
+    ${tablet({
+      marginTop: "8px",
+    })}
   }
   ${tablet({
     position: "absolute",
     flexDirection: "column",
-    right: "0",
-    top: "50px",
+    right: "-20px",
+    top: "30px",
     background: "#161616",
-    padding: "20px"
+    padding: "20px",
+    zIndex: "9999",
   })}
 `
 
@@ -107,7 +108,6 @@ const MenuItem = styled.div`
   ${tablet({
     marginLeft: "10px", 
     marginRight: "10px", 
-    marginBottom: "10px"
   })}
   
 `
@@ -117,9 +117,6 @@ const NavbarButton = styled.div`
   display: none;
   ${tablet({ display: "block" })}
 `;
-
-
-
 
 
 const Navbar = ({page}) => {
@@ -133,13 +130,10 @@ const Navbar = ({page}) => {
   }
 
   useEffect(() => {
-
     const changeWidth = () => {
       setScreenWidth(window.innerWidth);
     }
-
     window.addEventListener('resize', changeWidth)
-
     return () => {
             window.removeEventListener('resize', changeWidth)
         }

@@ -55,7 +55,6 @@ const Products = ({cat, filters, sort}) => {
     )
   }, [products, cat, filters]);
 
-
   /*
   This is for sorting by Newest, Price(ASC) and Price(DESC)
   Using the sort function to compare items in array

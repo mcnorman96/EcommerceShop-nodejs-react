@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { sliderItems } from '../data';
-import { tablet } from '../Responsive';
+import { mobile, tablet } from '../Responsive';
 
 const Container = styled.div `
   width: 100%; 
@@ -69,17 +69,19 @@ const InfoContainer = styled.div`
   top: 50%; 
   transform: translate(-50%, -50% );
   color: white;
-  ${tablet({ left: "40%", margin: "0",  })}
+  ${tablet({ left: "50%", margin: "0", width: "70vw"  })}
 `
 const Title = styled.h1`
   font-size: 70px;
-  ${tablet({ fontSize: "40px;" })}
+  ${tablet({ fontSize: "35px;" })} 
+  ${mobile({ fontSize: "30px;" })}
 `
 const Description = styled.p`
   margin: 50px 0;
   font-size: 20px;
   font-weight: 500;
   letter-spacing: 3px;
+  ${tablet({ margin: "20px 0;" })} 
 `;
 
 const Button = styled.button`
@@ -91,6 +93,7 @@ const Button = styled.button`
   color: white;
   border: none;
     box-shadow: 3px 3px 20px 3px #000000;
+    font-weight: bold;
 `;
 
 

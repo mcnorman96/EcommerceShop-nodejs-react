@@ -2,7 +2,7 @@ import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined } from '@m
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { tablet } from '../Responsive';
+import { mobile, tablet } from '../Responsive';
 
 const Info = styled.div`
   opacity: 0;
@@ -61,7 +61,7 @@ const ImageContainer = styled.div`
   justify-content: center;
   background-color: #f5fbfd;
   position: relative;
-
+  ${mobile({ height: "200px" })} 
 `;
 
 const Image = styled.img`

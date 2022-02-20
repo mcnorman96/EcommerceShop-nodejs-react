@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 import {
   useLocation, 
 } from "react-router-dom";
-import { tablet } from '../Responsive';
+import { mobile, tablet } from '../Responsive';
 
 const Container = styled.div`
   
@@ -29,6 +29,7 @@ const FilterText = styled.span`
   font-size: 20px;
   font-weight: 600;
   margin-right: 20px;
+  ${mobile({ fontSize: "16px" })}
 `;
 
 const Select = styled.select`
