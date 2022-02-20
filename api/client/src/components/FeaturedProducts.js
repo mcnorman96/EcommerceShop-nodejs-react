@@ -43,7 +43,7 @@ const FeaturedProducts = () => {
   useEffect(()=> {
     const getProducts = async () => {
       try{
-        const res = await axios.get("http://localhost:5000/api/products");
+        const res = await axios.get("https://react-node-webshop.herokuapp.com/api/products");
        
         setProducts(res.data);
 
