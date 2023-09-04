@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Product from './Product';
 import axios from "axios";
 import { mobile, tablet } from '../Responsive';
+import { BASE_URL } from '../requestMethods';
 
 const Container = styled.div`
   padding: 50px 100px;
@@ -43,12 +44,10 @@ const FeaturedProducts = () => {
   useEffect(()=> {
     const getProducts = async () => {
       try{
-        const res = await axios.get("http://localhost:5000/api/products");
-       
+        const res = await axios.get(`${BASE_URL}products`);
         setProducts(res.data);
-
       } catch(err) {
-
+        console.log('err', err);
       }
     } 
     getProducts();

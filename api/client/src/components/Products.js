@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Product from './Product';
 import axios from "axios";
 import { tablet } from '../Responsive';
+import { BASE_URL } from '../requestMethods';
 
 const Container = styled.div`
   padding: 20px;
@@ -27,13 +28,12 @@ const Products = ({cat, filters, sort}) => {
     const getProducts = async () => {
       try{
         const res = await axios.get( cat 
-          ? `http://localhost:5000/api/products?category=${cat}` 
-          : "http://localhost:5000/api/products");
+          ? `${BASE_URL}products?category=${cat}` 
+          : `${BASE_URL}products`);
        
         setProducts(res.data);
-
       } catch(err) {
-
+        console.log('err', err);
       }
     } 
     getProducts();
