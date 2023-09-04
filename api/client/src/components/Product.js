@@ -1,23 +1,7 @@
-import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined } from '@material-ui/icons';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { mobile, tablet } from '../Responsive';
-
-const Info = styled.div`
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgba(0,0,0,0.2);
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.5s ease;
-`;
 
 const Container = styled.div`
   //flex: 1;
@@ -37,18 +21,18 @@ const Container = styled.div`
     text-decoration: none;
   }
   ${props => {
-        if (props.props?.color === 'white') return `
+    if (props.props?.color === 'white') return `
           color: white;
           a {
             color: white;
           }
         `
-    }}
-
-  &:hover ${Info} {
-    opacity: 1;
+  }}
+    &:hover {
+    opacity: 0.8;
   }
-  ${tablet({ width: "calc(50% - 10px)"  })}
+
+  ${tablet({ width: "calc(50% - 10px)" })}
 `;
 
 const ImageContainer = styled.div`
@@ -61,7 +45,7 @@ const ImageContainer = styled.div`
   justify-content: center;
   background-color: #f5fbfd;
   position: relative;
-  ${mobile({ height: "200px" })} 
+  ${mobile({ height: "200px" })}
 `;
 
 const Image = styled.img`
@@ -71,63 +55,34 @@ const Image = styled.img`
   width: 100%;
 `;
 
-const Icon = styled.div`
-  width: 40px; 
-  height: 40px;
-  border-radius: 50%;
-  background-color: white;
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  transition: all 0.5s ease;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #e9f5f5;
-    transform: scale(1.1);
-  }
-`;
-
 const Title = styled.h3`
   margin-bottom: 10px;
   ${props => {
-        if (props.props === 'white') return `
+    if (props.props === 'white') return `
         color: white;
         `
-    }}
+  }}
 `;
 
 const Price = styled.b`
   font-weight: bold;
   ${props => {
-        if (props.props === 'white') return `
+    if (props.props === 'white') return `
         color: white;
         `
-    }}
+  }}
 `;
 
-const Product = ({item, color}) => {
+const Product = ({ item, color }) => {
   return (
     <Container key={item._id}>
+      <Link to={`/product/${item._id}`}>
         <ImageContainer>
-          <Image src={item.img ? item.img : `https://firebasestorage.googleapis.com/v0/b/normanisfire.appspot.com/o/headphones2.jpg?alt=media&token=880bd832-61c6-420a-9ce2-e03e8e680887` } />
-          <Info>
-          <Icon>
-            <ShoppingCartOutlined/>
-          </Icon>
-          <Icon>
-            <Link to={`/product/${item._id}`}>
-              <SearchOutlined/>
-            </Link>
-          </Icon>
-          <Icon>
-            <FavoriteBorderOutlined/>
-          </Icon>
-          </Info>
+          <Image src={item.img ? item.img : `https://firebasestorage.googleapis.com/v0/b/normanisfire.appspot.com/o/headphones2.jpg?alt=media&token=880bd832-61c6-420a-9ce2-e03e8e680887`} />
         </ImageContainer>
         <Title props={color}>{item.title}</Title>
         <Price props={color}>{item.price} DKK</Price>
+      </Link>
     </Container>
   );
 };
